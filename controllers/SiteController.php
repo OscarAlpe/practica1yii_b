@@ -12,6 +12,7 @@ use app\models\ContactForm;
 use app\models\Mensajes;
 use yii\data\ActiveDataProvider;
 use app\models\Libros;
+use app\models\Autores;
 
 class SiteController extends Controller
 {
@@ -55,6 +56,18 @@ class SiteController extends Controller
         ]);
 
         return $this->render('libros',[
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAutores()
+    {
+        $query = Autores::find()->select("id, nombre, apellidos");
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $this->render('autores',[
             'dataProvider' => $dataProvider,
         ]);
     }
