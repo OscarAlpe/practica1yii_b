@@ -19,7 +19,7 @@ class Autores extends \yii\bootstrap\Widget {
     public function run() {
         $salida = '';
         
-        $salida .= "<tr><th>$this->id</th><th>$this->nombre</th><th>$this->apellidos</th></tr>";
+        $salida .= "<tr><td>$this->id</td><td>$this->nombre</td><td>$this->apellidos</td></tr>";
         
         return $salida;
     }

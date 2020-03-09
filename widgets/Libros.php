@@ -22,7 +22,7 @@ class Libros extends \yii\bootstrap\Widget {
         
         $fechaFormateada = strtotime($this->fecha_publicacion);
         $fechaFormateada = date("d/m/Y", $fechaFormateada);
-        $salida .= "<tr><th>$this->id</th><th>$this->isbn</th><th>$this->titulo</th><th>$fechaFormateada</th></tr>";
+        $salida .= "<tr><td>$this->id</td><td>$this->isbn</td><td>$this->titulo</td><td>$fechaFormateada</td></tr>";
         
         return $salida;
     }
