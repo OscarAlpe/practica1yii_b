@@ -9,6 +9,9 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Mensajes;
+use yii\data\ActiveDataProvider;
+use app\models\Libros;
 
 class SiteController extends Controller
 {
@@ -35,7 +38,25 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $numeroRegistros = Mensajes::find()->count();
+        $aleatorio = random_int(0, $numeroRegistros - 1);
+        $filaAleatoria = Mensajes::find()->offset($aleatorio)->one();;
+        
+        return $this->render('index',[
+            'filaAleatoria' => $filaAleatoria,
+        ]);
+    }
+
+    public function actionLibros()
+    {
+        $query = Libros::find()->select("id, isbn, titulo, fecha_publicacion");
+        $dataProvider = new ActiveDataProvider([
+            'query' => $query,
+        ]);
+
+        return $this->render('libros',[
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
 }
